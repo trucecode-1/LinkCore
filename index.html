@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkcore Information Technology | Network Solutions</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts: Plus Jakarta Sans (Modern Tech Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #f1f5f9 1px, transparent 1px), linear-gradient(to bottom, #f1f5f9 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'fade-slide': 'fadeSlide 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    },
+                    keyframes: {
+                        fadeSlide: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Premium Background */
+        .tech-bg {
+            background-color: #ffffff;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Ultra-smooth GPU-accelerated cards */
+        .service-card {
+            will-change: transform, opacity;
+            transform: translateZ(0); /* Force GPU layer */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .service-card.animate-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .service-card:hover {
+            transform: translateY(-8px) translateZ(0);
+            box-shadow: 0 20px 40px -5px rgba(37, 99, 235, 0.15);
+            border-color: #bfdbfe;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-slow { animation: float 6s ease-in-out infinite; }
+        .float-medium { animation: float 5s ease-in-out infinite; animation-delay: 1s; }
+        .float-fast { animation: float 4s ease-in-out infinite; animation-delay: 2s; }
+    </style>
+</head>
+<body class="antialiased text-slate-600 bg-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 relative" id="navbar">
+        <div class="absolute inset-0 bg-white/80 backdrop-blur-md border-b border-slate-100"></div>
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative">
+            <div class="flex items-center gap-1.5 font-display font-bold text-xl text-slate-900 tracking-tight">
+                <img src="logo.png" alt="Linkcore IT logo" class="h-9 w-auto">
+                <span class="text-[#2F7DBA]">LINK</span><span class="text-[#7BC96F]">CORE</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                <a href="#home" class="hover:text-primary-600 transition-colors">Home</a>
+                <a href="#features" class="hover:text-primary-600 transition-colors">Why Us</a>
+                <a href="#services" class="hover:text-primary-600 transition-colors">Services</a>
+                <a href="#contact" class="px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20">
+                    Contact Sales
+                </a>
+            </div>
+
+            <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+                <i class="ph-bold ph-list text-xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full inset-x-0 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-lg">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-2 text-sm font-medium text-slate-700">
+                <a href="#home" class="py-2 hover:text-primary-600 transition-colors">Home</a>
+                <a href="#features" class="py-2 hover:text-primary-600 transition-colors">Why Us</a>
+                <a href="#services" class="py-2 hover:text-primary-600 transition-colors">Services</a>
+                <a href="#contact" class="mt-2 inline-flex items-center justify-center px-5 py-2.5 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Tech Grid Background -->
+        <div class="absolute inset-0 tech-bg -z-10 h-[800px]"></div>
+        
+        <!-- Blobs -->
+        <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/50 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="hero-content opacity-0 translate-y-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-primary-700 text-xs font-bold uppercase tracking-wider mb-8">
+                    <span class="w-2 h-2 rounded-full bg-primary-600 animate-pulse"></span>
+                    Network Infrastructure Experts
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-display font-bold text-slate-900 leading-[1.1] mb-6">
+                    Reliable Network <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-indigo-600">Solutions</span>
+                </h1>
+                
+                <p class="text-lg text-slate-500 mb-10 leading-relaxed max-w-lg">
+                    Complete network cabling, device installation & configuration, proactive maintenance, hardware sales, and office setup services.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#services" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-xl shadow-primary-600/20 transition-all text-center flex items-center justify-center gap-2">
+                        Our Services
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-semibold hover:border-primary-200 hover:bg-slate-50 transition-all text-center">
+                        Get Quote
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-12 pt-8 border-t border-slate-100 flex items-center gap-6">
+                    <div class="flex -space-x-3">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="">
+                        <img src="https://randomuser.me/api/portraits/men/86.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="">
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">100+ Projects Completed</p>
+                        <p class="text-xs text-slate-500">Network Installations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="relative lg:h-[600px] flex items-center justify-center hero-visual opacity-0">
+                <div class="relative w-full max-w-md aspect-square bg-slate-100 rounded-full flex items-center justify-center overflow-hidden border border-slate-200/50 shadow-inner">
+                   <img src="network.jpg" class="w-[90%] h-[90%] object-cover rounded-full shadow-2xl scale-105 hover:scale-100 transition-transform duration-700">
+                </div>
+                
+                <!-- Floating Badges -->
+                <div class="absolute top-20 left-0 bg-white p-4 rounded-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 float-slow flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                        <i class="ph-bold ph-plugs-connected text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-bold uppercase">Cabling</p>
+                        <p class="text-sm font-bold text-slate-900">Cat6/Cat7/Fiber</p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-20 right-0 bg-white p-4 rounded-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 float-medium flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                        <i class="ph-bold ph-wrench text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 font-bold uppercase">Maintenance</p>
+                        <p class="text-sm font-bold text-slate-900">24/7 Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="features" class="py-10 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-slate-800">
+            <div>
+                <div class="text-3xl font-display font-bold text-primary-500 mb-1">500+</div>
+                <div class="text-sm text-slate-400">Meters Cabling</div>
+            </div>
+            <div>
+                <div class="text-3xl font-display font-bold text-primary-500 mb-1">50+</div>
+                <div class="text-sm text-slate-400">Devices Installed</div>
+            </div>
+            <div>
+                <div class="text-3xl font-display font-bold text-primary-500 mb-1">99.9%</div>
+                <div class="text-sm text-slate-400">Uptime Guarantee</div>
+            </div>
+            <div>
+                <div class="text-3xl font-display font-bold text-primary-500 mb-1">24/7</div>
+                <div class="text-sm text-slate-400">Support Available</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - SMOOTH ANIMATION -->
+    <section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <span class="text-primary-600 font-bold tracking-wider text-sm uppercase mb-2 block">Complete Network Solutions</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900">Our 5 Core Services</h2>
+                </div>
+                <a href="#contact" class="text-primary-600 font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                    Request Service Quote <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="services-container grid md:grid-cols-3 gap-6">
+                <!-- Service 1: Network Cabling -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100">
+                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-primary-600">
+                        <i class="ph-duotone ph-plugs-connected text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Network Cabling</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Professional structured cabling installation for offices, data centers, and commercial buildings.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Cat6/Cat7/Fiber Optic</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Patch Panels & Racks</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Cable Testing & Certification</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Installation & Configuration -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600">
+                        <i class="ph-duotone ph-sliders text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Installation & Configuration</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Expert setup of routers, switches, firewalls, access points, and network appliances.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Cisco, Ubiquiti, Mikrotik</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> VLAN & QoS Setup</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Security Hardening</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Maintenance -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100">
+                    <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-6 text-orange-600">
+                        <i class="ph-duotone ph-wrench text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Maintenance of Network Devices</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Proactive maintenance and troubleshooting for all network hardware to ensure maximum uptime.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Firmware Updates</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Performance Monitoring</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Emergency Response</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Sales of Network Devices (Featured) -->
+                <div class="service-card md:col-span-2 mt-6 bg-gradient-to-br from-primary-600 to-primary-700 text-white rounded-3xl overflow-hidden relative shadow-2xl">
+                    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-white/10 rounded-full blur-[100px]"></div>
+                    <div class="grid md:grid-cols-2 gap-12 p-10 md:p-14 relative z-10 items-center">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-white/20 text-white text-xs font-bold rounded-md mb-4 uppercase">Authorized Dealer</div>
+                            <h3 class="text-3xl font-display font-bold mb-4">Sales of Network Devices</h3>
+                            <p class="text-primary-100 leading-relaxed mb-8">
+                                Competitive pricing on routers, switches, firewalls, access points, cables, and networking accessories from leading brands.
+                            </p>
+                            <ul class="space-y-2 text-primary-50">
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400"></i> Cisco • TP-Link • Ubiquiti</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400"></i> D-Link • Netgear • Mikrotik</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400"></i> Patch Cables • Racks • Tools</li>
+                            </ul>
+                        </div>
+                        <div class="relative">
+                            <img src="devices.jpg" class="rounded-xl shadow-2xl border-4 border-white/30">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 5: Office Setup -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-slate-100 md:col-span-1">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 text-indigo-600">
+                        <i class="ph-duotone ph-buildings text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Office Setup with Computer Accessories</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Complete office IT setup including workstations, peripherals, and networking infrastructure.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Desktops & Laptops</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Monitors & Keyboards</li>
+                        <li class="flex items-center gap-2 text-sm text-slate-600"><i class="ph-fill ph-check-circle text-green-500"></i> Printers & UPS Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="bg-white pt-20 pb-10 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">Ready to Get Started?</h2>
+                <p class="text-slate-500 text-lg mb-8 max-w-xl mx-auto">Contact us for network cabling quotes, device sales pricing, or office setup consultations.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-4 font-display font-bold text-slate-900 mb-6">
+                        <img src="logo.png" alt="Linkcore IT logo" class="h-12 w-auto">
+                        <div class="leading-tight">
+                            <div class="text-xl">
+                                <span class="text-[#2F7DBA]">LINK</span> <span class="text-[#7BC96F]">CORE</span>
+                            </div>
+                            <div class="text-sm font-semibold text-[#000]">
+                                Information Technology
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 max-w-sm mb-8">
+                        Your complete partner for network infrastructure and office technology solutions across the UAE.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="tel:+971567671805" class="bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-700 transition-all shadow-lg">
+                            Call Now +971 56 767 1805
+                        </a>
+                        <a href="mailto:info@linkcore.ae" class="border border-slate-200 text-slate-700 px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 transition-all">
+                            Email Us
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6 text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#services" class="hover:text-primary-600">Network Cabling</a></li>
+                        <li><a href="#services" class="hover:text-primary-600">Device Installation</a></li>
+                        <li><a href="#services" class="hover:text-primary-600">Maintenance Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6 text-lg">Get In Touch</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-map-pin text-primary-600 mt-1"></i>
+                            <span>United Arab Emirates</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-phone text-primary-600"></i>
+                            <span>+971 56 767 1805</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-envelope-simple text-primary-600"></i>
+                            <span>info@linkcore.ae</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex items-center gap-4">
+                        <a href="https://wa.me/971567671805" class="group w-11 h-11 rounded-full bg-green-50 text-green-600 border border-green-100 flex items-center justify-center shadow-sm transition-all duration-300 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2" aria-label="WhatsApp">
+                            <i class="ph-fill ph-whatsapp-logo text-2xl transition-transform duration-300 group-hover:scale-110"></i>
+                        </a>
+                        <a href="https://instagram.com/" class="group w-11 h-11 rounded-full bg-pink-50 text-pink-600 border border-pink-100 flex items-center justify-center shadow-sm transition-all duration-300 hover:bg-gradient-to-br hover:from-pink-500 hover:via-fuchsia-500 hover:to-orange-400 hover:text-white hover:border-transparent hover:shadow-lg hover:shadow-pink-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2" aria-label="Instagram">
+                            <i class="ph-fill ph-instagram-logo text-2xl transition-transform duration-300 group-hover:scale-110"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                <p class="text-black">&copy; 2026 Linkcore Information Technology. All rights reserved. Developed by <a href="https://trucecode.com" target="_blank" rel="noopener noreferrer" class="text-primary-600 font-semibold hover:text-primary-700">TruceCode</a>.</p>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="text-black hover:text-primary-600">Privacy</a>
+                    <a href="terms.html" class="text-black hover:text-primary-600">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optimized Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations (unchanged)
+        gsap.to(".hero-content", { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+        gsap.to(".hero-visual", { opacity: 1, duration: 1.2, delay: 0.3, ease: "power3.out" });
+
+        // ULTRA-SMOOTH Services Animation (NEW APPROACH)
+        function animateServicesSmoothly() {
+            const servicesContainer = document.querySelector('.services-container');
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            // Use Intersection Observer for buttery smooth performance
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add class immediately for instant feedback
+                        entry.target.classList.add('animate-in');
+                        
+                        // Stagger with minimal delay (0.1s max)
+                        setTimeout(() => {
+                            entry.target.style.transitionDelay = `${Math.min(index * 0.08, 0.3)}s`;
+                        }, 50);
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all service cards
+            serviceCards.forEach(card => observer.observe(card));
+        }
+
+        // Initialize smooth animations when DOM loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateServicesSmoothly);
+        } else {
+            animateServicesSmoothly();
+        }
+
+        // Navbar blur (unchanged)
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            const icon = mobileMenuButton.querySelector('i');
+            mobileMenuButton.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
+                if (icon) {
+                    if (isOpen) {
+                        icon.classList.remove('ph-x');
+                        icon.classList.add('ph-list');
+                    } else {
+                        icon.classList.remove('ph-list');
+                        icon.classList.add('ph-x');
+                    }
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.setAttribute('aria-expanded', 'false');
+                        if (icon) {
+                            icon.classList.remove('ph-x');
+                            icon.classList.add('ph-list');
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
