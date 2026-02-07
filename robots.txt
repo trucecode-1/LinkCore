@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block system files if any
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://linkcore.ae/sitemap.xml
